@@ -1,17 +1,21 @@
-<table class="table table-striped">
-  <thead class="table-dark">
-    <tr>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Email</th>
-    </tr>
-  </thead>
+<div class="row mt-4">
+  <div class="col-12">
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Email</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <tr *ngFor="let employee of listOfEmployee">
-      <td>{{ employee.name }}</td>
-      <td>{{ employee.lastName }}</td>
-      <td>{{ employee.email }}</td>
-    </tr>
-  </tbody>
-</table>
+      <tbody>
+        <tr *ngFor="let employee of listOfEmployee">
+          <td>{{ employee.nombre }}</td>
+          <td>{{ employee.apellido }}</td>
+          <td>{{ employee.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
