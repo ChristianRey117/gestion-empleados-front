@@ -1,6 +1,6 @@
 export interface IEmployee {
   id: number;
-  name: string;
-  lastName: string;
+  nombre: string;
+  apellido: string;
   email: string;
 }
