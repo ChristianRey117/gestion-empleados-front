@@ -8,10 +8,10 @@
   </thead>
 
   <tbody>
-    <tr>
-      <td>Nombre</td>
-      <td>Apellido</td>
-      <td>Email</td>
+    <tr *ngFor="let employee of listOfEmployee">
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.lastName }}</td>
+      <td>{{ employee.email }}</td>
     </tr>
   </tbody>
 </table>
