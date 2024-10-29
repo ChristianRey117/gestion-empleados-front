@@ -13,4 +13,11 @@ export class EmployeeService {
   getAllEmployees(): Observable<IEmployee[]> {
     return this._httpClient.get<IEmployee[]>(this.baseUrl + '/empleados');
   }
+
+  saveEmployee(employee: IEmployee): Observable<IEmployee> {
+    return this._httpClient.post<IEmployee>(
+      this.baseUrl + '/empleados',
+      employee
+    );
+  }
 }
