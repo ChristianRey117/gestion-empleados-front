@@ -9,6 +9,7 @@
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Email</th>
+          <th>Acciones</th>
         </tr>
       </thead>
 
@@ -17,6 +18,14 @@
           <td>{{ employee.nombre }}</td>
           <td>{{ employee.apellido }}</td>
           <td>{{ employee.email }}</td>
+          <td>
+           
+            <button class="btn btn-primary" style="margin-bottom: 0.5rem; margin-right: 0.5rem;">Edit</button>
+
+            <button class="btn btn-danger" style="margin-bottom: 0.5rem;">Delete</button>
+
+            
+          </td>
         </tr>
       </tbody>
     </table>
