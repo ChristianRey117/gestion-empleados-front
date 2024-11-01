@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
+  AbstractControl,
   FormControl,
   FormGroup,
   FormsModule,
@@ -31,6 +32,18 @@ export class RegisterEmployeeComponent {
     private readonly _router: Router
   ) {}
 
+  get nameControl(): AbstractControl {
+    return this.formEmployee.get(['name']);
+  }
+
+  get lastNameControl(): AbstractControl {
+    return this.formEmployee.get(['lastName']);
+  }
+
+  get emailControl(): AbstractControl {
+    return this.formEmployee.get(['email']);
+  }
+
   saveEmployee(): void {
     if (this.formEmployee.valid) {
       console.log(this.formEmployee.getRawValue());
@@ -46,6 +59,10 @@ export class RegisterEmployeeComponent {
           })
         )
         .subscribe();
+    } else {
+      this.nameControl.markAsTouched();
+      this.lastNameControl.markAsTouched();
+      this.emailControl.markAsTouched();
     }
   }
 }
