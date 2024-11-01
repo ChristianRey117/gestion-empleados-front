@@ -7,7 +7,8 @@ import { IEmployee } from '../interfaces/IEmployee';
   providedIn: 'root',
 })
 export class EmployeeService {
-  private baseUrl: string = 'http://localhost:8080/api/v1';
+  private baseUrl: string =
+    'https://gestion-empleados-back-production.up.railway.app/api/v1';
   constructor(private readonly _httpClient: HttpClient) {}
 
   getAllEmployees(): Observable<IEmployee[]> {

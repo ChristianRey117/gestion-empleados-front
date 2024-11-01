@@ -11,6 +11,7 @@ import {
 import { EmployeeService } from '../../services/employee.service';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register-employee',
@@ -55,7 +56,13 @@ export class RegisterEmployeeComponent {
         })
         .pipe(
           tap(() => {
-            this._router.navigate(['/empleados'], { replaceUrl: true });
+            Swal.fire({
+              title: 'Save it!',
+              text: 'Employee has been registered.',
+              icon: 'success',
+            }).then(() =>
+              this._router.navigate(['/empleados'], { replaceUrl: true })
+            );
           })
         )
         .subscribe();
