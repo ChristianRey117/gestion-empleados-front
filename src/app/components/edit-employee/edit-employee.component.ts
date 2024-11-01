@@ -11,6 +11,7 @@ import { EmployeeService } from '../../services/employee.service';
 import { IEmployee } from '../../interfaces/IEmployee';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-employee',
@@ -44,8 +45,41 @@ export class EditEmployeeComponent implements OnInit {
   }
 
   editEmployee(): void {
-    const employeeForm: IEmployee = this.formEmployee.getRawValue();
+    const employeeForm = this.formEmployee.getRawValue();
 
-    console.log(this.formEmployee.getRawValue() === this.employee);
+    if (
+      employeeForm.lastName === this.employee.apellido &&
+      employeeForm.email === this.employee.email &&
+      employeeForm.name === this.employee.nombre
+    ) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'You need to change information of employee to save it',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+    } else {
+      this._employeeService
+        .updateEmployee(this.employee.id, {
+          apellido: employeeForm.lastName,
+          email: employeeForm.email,
+          nombre: employeeForm.name,
+        })
+        .pipe(
+          tap((response) => {
+            console.log(response);
+            Swal.fire({
+              title: 'Save it!',
+              text: 'Employee has been updated.',
+              icon: 'success',
+            }).then(() =>
+              this._router.navigate(['/empleados'], { replaceUrl: true })
+            );
+          })
+        )
+        .subscribe();
+    }
+
+    console.log(this.formEmployee.getRawValue(), this.employee);
   }
 }
