@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { EmployeeService } from '../../services/employee.service';
 import { tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-employee',
@@ -16,7 +17,10 @@ import { tap } from 'rxjs';
 export class ListEmployeeComponent implements OnInit {
   listOfEmployee: IEmployee[];
 
-  constructor(private readonly _employeeService: EmployeeService) {}
+  constructor(
+    private readonly _employeeService: EmployeeService,
+    private readonly _router: Router
+  ) {}
 
   ngOnInit(): void {
     // this.listOfEmployee = [
@@ -37,5 +41,25 @@ export class ListEmployeeComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  deleteEmployee(id: number): void {
+    this._employeeService
+      .deleteEmployee(id)
+      .pipe(
+        tap((empleados) => {
+          this.listOfEmployee = empleados;
+        })
+      )
+      .subscribe();
+  }
+
+  editEmployee(employee: IEmployee): void {
+    this._router.navigate(['/editar-empleados'], {
+      replaceUrl: true,
+      state: {
+        employee: employee,
+      },
+    });
   }
 }

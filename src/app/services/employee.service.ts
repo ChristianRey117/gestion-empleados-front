@@ -20,4 +20,16 @@ export class EmployeeService {
       employee
     );
   }
+
+  updateEmployee(id: number, employee: IEmployee): Observable<any> {
+    return this._httpClient.put(`${this.baseUrl}/empleados/${id}`, employee);
+  }
+
+  deleteEmployee(id: number): Observable<any> {
+    return this._httpClient.delete(`${this.baseUrl}/empleados/${id}`);
+  }
+
+  getEmployeeById(id: number): Observable<IEmployee> {
+    return this._httpClient.get<IEmployee>(`${this.baseUrl}/empleados/${id}`);
+  }
 }
